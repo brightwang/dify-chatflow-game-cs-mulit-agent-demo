@@ -1,0 +1,923 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 客服多agent 演示
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/bedrock:0.0.9@4484b4097187376df28408110fa951c64a18588689746ed4eefc4ee4dc3ec9f2
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables:
+  - description: ''
+    id: abefe77b-c4bf-4556-958e-3464f170b64b
+    name: history
+    selector:
+    - conversation
+    - history
+    value: []
+    value_type: array[string]
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: template-transform
+      id: 1742202974224-source-1742350994298-target
+      source: '1742202974224'
+      sourceHandle: source
+      target: '1742350994298'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: assigner
+      id: 1742350994298-source-1742350971437-target
+      source: '1742350994298'
+      sourceHandle: source
+      target: '1742350971437'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: template-transform
+      id: 1742350971437-source-1742365438889-target
+      source: '1742350971437'
+      sourceHandle: source
+      target: '1742365438889'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: question-classifier
+      id: 1742365438889-source-1742364688771-target
+      source: '1742365438889'
+      sourceHandle: source
+      target: '1742364688771'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: agent
+      id: 1742364688771-1-1742202983138-target
+      source: '1742364688771'
+      sourceHandle: '1'
+      target: '1742202983138'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: agent
+      id: 1742364688771-2-17423656891550-target
+      source: '1742364688771'
+      sourceHandle: '2'
+      target: '17423656891550'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: agent
+        targetType: answer
+      id: 1742202983138-source-answer-target
+      source: '1742202983138'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: agent
+        targetType: answer
+      id: 17423656891550-source-1742366046859-target
+      source: '17423656891550'
+      sourceHandle: source
+      target: '1742366046859'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: template-transform
+        targetType: assigner
+      id: 1742366139536-source-1742366188205-target
+      source: '1742366139536'
+      sourceHandle: source
+      target: '1742366188205'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: answer
+        targetType: variable-aggregator
+      id: 1742366046859-source-1742366248145-target
+      source: '1742366046859'
+      sourceHandle: source
+      target: '1742366248145'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: template-transform
+      id: 1742366248145-source-1742366139536-target
+      source: '1742366248145'
+      sourceHandle: source
+      target: '1742366139536'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: variable-aggregator
+      id: answer-source-1742366248145-target
+      source: answer
+      sourceHandle: source
+      target: '1742366248145'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: agent
+      id: 1742364688771-1742366386789-17423664651770-target
+      source: '1742364688771'
+      sourceHandle: '1742366386789'
+      target: '17423664651770'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: agent
+        targetType: answer
+      id: 17423664651770-source-17423665567250-target
+      source: '17423664651770'
+      sourceHandle: source
+      target: '17423665567250'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: variable-aggregator
+      id: 17423665567250-source-1742366248145-target
+      source: '17423665567250'
+      sourceHandle: source
+      target: '1742366248145'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: question-classifier
+        targetType: agent
+      id: 1742364688771-1742876076568-1742876104154-target
+      source: '1742364688771'
+      sourceHandle: '1742876076568'
+      target: '1742876104154'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: agent
+        targetType: answer
+      id: 1742876104154-source-1742876151169-target
+      source: '1742876104154'
+      sourceHandle: source
+      target: '1742876151169'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: variable-aggregator
+      id: 1742876151169-source-1742366248145-target
+      source: '1742876151169'
+      sourceHandle: source
+      target: '1742366248145'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 53
+      id: '1742202974224'
+      position:
+        x: -157.4995864685425
+        y: 298.88885948220747
+      positionAbsolute:
+        x: -157.4995864685425
+        y: 298.88885948220747
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1742202983138.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 104
+      id: answer
+      position:
+        x: 1644.8691960724482
+        y: -145.04731906636587
+      positionAbsolute:
+        x: 1644.8691960724482
+        y: -145.04731906636587
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: '你是有用的助手
+
+              history中是你和玩家的历史聊天记录
+
+              你的任务是处理账号相关的问题，其他问题不需要处理'
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: us.anthropic.claude-3-7-sonnet-20250219-v1:0
+              model_type: llm
+              provider: langgenius/bedrock/bedrock
+              type: model-selector
+          query:
+            type: constant
+            value: '<history>
+
+              {{#conversation.history#}}
+
+              </history>
+
+              '
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: ''
+              parameters:
+                user_id:
+                  auto: 1
+                  value: null
+              provider_name: a6c3a4ee-008d-4345-a283-32ec44100cea
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: ''
+                  ja_JP: ''
+                  pt_BR: ''
+                  zh_Hans: ''
+                label:
+                  en_US: user_id
+                  ja_JP: user_id
+                  pt_BR: user_id
+                  zh_Hans: user_id
+                llm_description: ''
+                max: null
+                min: null
+                name: user_id
+                options: []
+                placeholder:
+                  en_US: ''
+                  ja_JP: ''
+                  pt_BR: ''
+                  zh_Hans: ''
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: number
+              settings: {}
+              tool_label: 获取用户账户封禁状态
+              tool_name: get_user_ban_status
+              type: workflow
+            - enabled: true
+              extra:
+                description: ''
+              parameters: {}
+              provider_name: 5aa0d673-ca20-4aa8-bbac-85e096e45a5a
+              schemas: []
+              settings: {}
+              tool_label: 提交人工服务
+              tool_name: request_human_service
+              type: workflow
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: langgenius/agent:0.0.9@f16916b704a20067317dbe9030f62aa28f0832021a3ef6d4ce699504074c5e13
+        selected: false
+        title: 账号Agent
+        type: agent
+      height: 197
+      id: '1742202983138'
+      position:
+        x: 1243.8889587297572
+        y: -6.16616491516487
+      positionAbsolute:
+        x: 1243.8889587297572
+        y: -6.16616491516487
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: append
+          value:
+          - '1742350994298'
+          - output
+          variable_selector:
+          - conversation
+          - history
+          write_mode: over-write
+        selected: false
+        title: 变量赋值
+        type: assigner
+        version: '2'
+      height: 87
+      id: '1742350971437'
+      position:
+        x: 362.27886031123785
+        y: 226.05565296518773
+      positionAbsolute:
+        x: 362.27886031123785
+        y: 226.05565296518773
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: '用户: {{ arg1 }}'
+        title: 用户消息模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - sys
+          - query
+          variable: arg1
+      height: 53
+      id: '1742350994298'
+      position:
+        x: 101.11160367302494
+        y: 68.77814903713076
+      positionAbsolute:
+        x: 101.11160367302494
+        y: 68.77814903713076
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        classes:
+        - id: '1'
+          name: 用户需要处理账号相关
+        - id: '2'
+          name: 用户需要处理支付相关问题
+        - id: '1742366386789'
+          name: 用户要处理的事情不属于账号和支付的情况，或者无法判断属于什么分类的情况
+        - id: '1742876076568'
+          name: 对游戏提 bug、建议等情况
+        desc: ''
+        instruction: '你的任务是根据 history 中的对话内容，判断对话需要进入什么分类
+
+          <history>
+
+          {{#1742365438889.output#}}
+
+          </history>'
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: us.anthropic.claude-3-7-sonnet-20250219-v1:0
+          provider: langgenius/bedrock/bedrock
+        query_variable_selector:
+        - '1742202974224'
+        - sys.query
+        selected: false
+        title: 问题分类器
+        topics: []
+        type: question-classifier
+        vision:
+          enabled: false
+      height: 279
+      id: '1742364688771'
+      position:
+        x: 897.8900835353218
+        y: -47.33275990304557
+      positionAbsolute:
+        x: 897.8900835353218
+        y: -47.33275990304557
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: true
+        template: "{% for h in history %}\n    - {{ h }}\n{% endfor %}"
+        title: history模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - conversation
+          - history
+          variable: history
+      height: 53
+      id: '1742365438889'
+      position:
+        x: 616.8900504528051
+        y: 35.00043007271586
+      positionAbsolute:
+        x: 616.8900504528051
+        y: 35.00043007271586
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: '你是有用的助手
+
+              history中是你和玩家的历史聊天记录
+
+              你的任务是处理支付相关的问题，其他问题不需要处理
+
+              '
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: ep-20250326163918-p9rd5
+              model_type: llm
+              provider: langgenius/volcengine_maas/volcengine_maas
+              type: model-selector
+          query:
+            type: constant
+            value: '<history>
+
+              {{#conversation.history#}}
+
+              </history>
+
+
+              '
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: ''
+              parameters:
+                order_id:
+                  auto: 1
+                  value: null
+              provider_name: c3e4cacc-322e-4093-974d-4bfd3b13db72
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: 订单 id
+                  ja_JP: 订单 id
+                  pt_BR: 订单 id
+                  zh_Hans: 订单 id
+                label:
+                  en_US: 订单 id
+                  ja_JP: 订单 id
+                  pt_BR: 订单 id
+                  zh_Hans: 订单 id
+                llm_description: 订单 id
+                max: null
+                min: null
+                name: order_id
+                options: []
+                placeholder:
+                  en_US: ''
+                  ja_JP: ''
+                  pt_BR: ''
+                  zh_Hans: ''
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: number
+              settings: {}
+              tool_label: 查询用户订单支付情况
+              tool_name: get_order_status
+              type: workflow
+            - enabled: true
+              extra:
+                description: ''
+              parameters: {}
+              provider_name: 5aa0d673-ca20-4aa8-bbac-85e096e45a5a
+              schemas: []
+              settings: {}
+              tool_label: 提交人工服务
+              tool_name: request_human_service
+              type: workflow
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: langgenius/agent:0.0.9@f16916b704a20067317dbe9030f62aa28f0832021a3ef6d4ce699504074c5e13
+        selected: false
+        title: 支付Agent
+        type: agent
+      height: 197
+      id: '17423656891550'
+      position:
+        x: 1254.2224795306845
+        y: 315.77771896441493
+      positionAbsolute:
+        x: 1254.2224795306845
+        y: 315.77771896441493
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#17423656891550.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 2
+        type: answer
+        variables: []
+      height: 104
+      id: '1742366046859'
+      position:
+        x: 1650.4176772722547
+        y: 174.4683892058428
+      positionAbsolute:
+        x: 1650.4176772722547
+        y: 174.4683892058428
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: '客服: {{ arg1 }}'
+        title: 客服模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1742366248145'
+          - output
+          variable: arg1
+      height: 53
+      id: '1742366139536'
+      position:
+        x: 2208.4252502731947
+        y: 434.68924418239953
+      positionAbsolute:
+        x: 2208.4252502731947
+        y: 434.68924418239953
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: append
+          value:
+          - '1742366139536'
+          - output
+          variable_selector:
+          - conversation
+          - history
+          write_mode: over-write
+        selected: false
+        title: 变量赋值 2
+        type: assigner
+        version: '2'
+      height: 87
+      id: '1742366188205'
+      position:
+        x: 2500.329328371311
+        y: 632.857210493175
+      positionAbsolute:
+        x: 2500.329328371311
+        y: 632.857210493175
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '17423656891550'
+          - text
+        - - '1742202983138'
+          - text
+        - - '17423664651770'
+          - text
+        - - '1742876104154'
+          - text
+      height: 174
+      id: '1742366248145'
+      position:
+        x: 2186.2325147105676
+        y: -93.95530267825728
+      positionAbsolute:
+        x: 2186.2325147105676
+        y: -93.95530267825728
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: '你是有用的助手
+
+              history中是你和玩家的历史聊天记录
+
+              你的任务是问清楚玩家的意图，是需要处理支付问题还是账号相关问题'
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: us.anthropic.claude-3-7-sonnet-20250219-v1:0
+              model_type: llm
+              provider: langgenius/bedrock/bedrock
+              type: model-selector
+          query:
+            type: constant
+            value: '<history>
+
+              {{#conversation.history#}}
+
+              </history>
+
+
+              '
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: ''
+              parameters: {}
+              provider_name: 5aa0d673-ca20-4aa8-bbac-85e096e45a5a
+              schemas: []
+              settings: {}
+              tool_label: 提交人工服务
+              tool_name: request_human_service
+              type: workflow
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: langgenius/agent:0.0.9@f16916b704a20067317dbe9030f62aa28f0832021a3ef6d4ce699504074c5e13
+        selected: false
+        title: 主Agent
+        type: agent
+      height: 197
+      id: '17423664651770'
+      position:
+        x: 1248.201359655381
+        y: 599.8852506836595
+      positionAbsolute:
+        x: 1248.201359655381
+        y: 599.8852506836595
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#17423664651770.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复3
+        type: answer
+        variables: []
+      height: 104
+      id: '17423665567250'
+      position:
+        x: 1671.6555835425759
+        y: 473.96123614884766
+      positionAbsolute:
+        x: 1671.6555835425759
+        y: 473.96123614884766
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: '你是有用的助手
+
+              history中是你和玩家的历史聊天记录
+
+              你的任务是处理用户 bug 和建议相关的问题，其他问题不需要处理
+
+              '
+          model:
+            type: constant
+            value:
+              completion_params: {}
+              mode: chat
+              model: gpt-4o
+              model_type: llm
+              provider: langgenius/azure_openai/azure_openai
+              type: model-selector
+          query:
+            type: constant
+            value: '<history>
+
+              {{#conversation.history#}}
+
+              </history>
+
+
+              '
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: ''
+              parameters: {}
+              provider_name: 5aa0d673-ca20-4aa8-bbac-85e096e45a5a
+              schemas: []
+              settings: {}
+              tool_label: 提交人工服务
+              tool_name: request_human_service
+              type: workflow
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        desc: ''
+        output_schema: null
+        plugin_unique_identifier: langgenius/agent:0.0.10@a45219413e9ff55abd7cfd2153e82ddeddcfd7eabf2f79749c2b0d04c0e96741
+        selected: false
+        title: bug 建议受理 agent
+        type: agent
+      height: 197
+      id: '1742876104154'
+      position:
+        x: 1248.201359655381
+        y: 874.8852506836595
+      positionAbsolute:
+        x: 1248.201359655381
+        y: 874.8852506836595
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1742876104154.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 104
+      id: '1742876151169'
+      position:
+        x: 1738.2101840737496
+        y: 773.950229681444
+      positionAbsolute:
+        x: 1738.2101840737496
+        y: 773.950229681444
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 118.93178331282155
+      y: 78.6091496941163
+      zoom: 0.6858666442952998
