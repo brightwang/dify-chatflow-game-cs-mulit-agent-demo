@@ -1,0 +1,283 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 查询用户订单支付情况
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: if-else
+      id: 1742541310094-source-1742541333879-target
+      source: '1742541310094'
+      sourceHandle: source
+      target: '1742541333879'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1742541333879-true-1742541359778-target
+      source: '1742541333879'
+      sourceHandle: 'true'
+      target: '1742541359778'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: template-transform
+      id: 1742541333879-false-1742541406189-target
+      source: '1742541333879'
+      sourceHandle: 'false'
+      target: '1742541406189'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1742541359778-source-1742541442313-target
+      source: '1742541359778'
+      sourceHandle: source
+      target: '1742541442313'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: template-transform
+        targetType: variable-aggregator
+      id: 1742541406189-source-1742541442313-target
+      source: '1742541406189'
+      sourceHandle: source
+      target: '1742541442313'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: variable-aggregator
+        targetType: end
+      id: 1742541442313-source-1742541456846-target
+      source: '1742541442313'
+      sourceHandle: source
+      target: '1742541456846'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 订单 id
+          max_length: 48
+          options: []
+          required: true
+          type: number
+          variable: order_id
+      height: 111
+      id: '1742541310094'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: <
+            id: 3974d6d3-f21e-42e1-93f1-dd64d2d41a04
+            value: '10'
+            varType: number
+            variable_selector:
+            - '1742541310094'
+            - order_id
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 156
+      id: '1742541333879'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: false
+        template: '{{ order_id }}支付失败'
+        title: 模板转换
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1742541310094'
+          - order_id
+          variable: order_id
+      height: 66
+      id: '1742541359778'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        selected: true
+        template: '{{ order_id }}支付成功'
+        title: 模板转换 2
+        type: template-transform
+        variables:
+        - value_selector:
+          - '1742541310094'
+          - order_id
+          variable: order_id
+      height: 66
+      id: '1742541406189'
+      position:
+        x: 688
+        y: 434
+      positionAbsolute:
+        x: 688
+        y: 434
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        output_type: string
+        selected: false
+        title: 变量聚合器
+        type: variable-aggregator
+        variables:
+        - - '1742541359778'
+          - output
+        - - '1742541406189'
+          - output
+      height: 158
+      id: '1742541442313'
+      position:
+        x: 1053
+        y: 297
+      positionAbsolute:
+        x: 1053
+        y: 297
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1742541442313'
+          - output
+          variable: output
+        selected: false
+        title: 结束
+        type: end
+      height: 111
+      id: '1742541456846'
+      position:
+        x: 1357
+        y: 297
+      positionAbsolute:
+        x: 1357
+        y: 297
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -97
+      y: 64
+      zoom: 1
